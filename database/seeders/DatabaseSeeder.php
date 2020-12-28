@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +17,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        // DB::table('users')->truncate();
+        // DB::table('posts')->truncate();
+
+                
+         //User::factory(10)->create();
+         //Post::factory(10)->create();
+
+        User::factory(3)->create()->each(function($user){
+            $user->posts()->save(Post::factory()->make());      //use $user to access the relationship ->posts(), 
+                                                                //, entering related Model called Post, works cause of users_id in post table
+        });
+
+        // User::factory(10)->create();
+        // Post::factory(10)->create();
     }
+
 }
