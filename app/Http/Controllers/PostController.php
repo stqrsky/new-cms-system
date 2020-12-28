@@ -13,4 +13,13 @@ class PostController extends Controller
         return view('blog-post', ['post' => $post]);
     }
 
+    public function create() {     // routeModelbinding , inject Post class
+
+        return view('admin.posts.create');
+    }
+
+    public function store() {
+        dd(request()->all());
+    }
+
 }
