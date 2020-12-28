@@ -30,6 +30,8 @@ class PostController extends Controller
             $inputs['post_image'] = request('post_image')->store('images'); // then we grab $input array and put it in there, = grab from request... and store it in images folder
         }
 
+        auth()->user()->posts()->create($inputs);
+        return back();
     }
 
 }
