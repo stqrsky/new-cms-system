@@ -19,7 +19,17 @@ class PostController extends Controller
     }
 
     public function store() {
-        dd(request()->all());
+
+        $inputs = request()->validate([
+            'title' => 'required | min:3 | max:255',
+            'post_image' => 'file',
+            'body' => 'required'
+        ]);
+
+        if(request('post_image')) {                                         // if post_image is available
+            $inputs['post_image'] = request('post_image')->store('images'); // then we grab $input array and put it in there, = grab from request... and store it in images folder
+        }
+
     }
 
 }
