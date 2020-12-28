@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
          //User::factory(10)->create();
          //Post::factory(10)->create();
 
-        User::factory(3)->create()->each(function($user){       // chain a each-function, with having a callback to have that user
+        User::factory(10)->create()->each(function($user){       // chain a each-function, with having a callback to have that user
             $user->posts()->save(Post::factory()->make());      //use created instance $user to access the relationship ->posts(), 
                                                                 //, entering related Model called Post, works cause of users_id in post table
         });
