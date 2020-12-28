@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     
+    public function index() {
+        return view('admin.posts.index');
+    }
+
+
     public function show(Post $post) {     // routeModelbinding , inject Post class
 
         return view('blog-post', ['post' => $post]);
