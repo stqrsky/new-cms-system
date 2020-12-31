@@ -13,8 +13,11 @@ class PostController extends Controller
 
         $posts = auth()->user()->posts;                   // use this ->posts syntax like a property to get a collection, instead of posts()
 
-        // create policies
-        // $posts = Post::all();
+        //PAGINATION
+        $posts = auth()->user()->posts()->paginate(5);       //  chaining methods, we need to keep chaining methods
+
+
+
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
