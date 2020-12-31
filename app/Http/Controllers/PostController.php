@@ -11,10 +11,10 @@ class PostController extends Controller
     
     public function index() {
 
-        // $posts = auth()->user()->posts;                   // use this ->posts syntax like a property to get a collection, instead of posts()
+        $posts = auth()->user()->posts;                   // use this ->posts syntax like a property to get a collection, instead of posts()
 
         // create policies
-        $posts = Post::all();
+        // $posts = Post::all();
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
@@ -26,10 +26,17 @@ class PostController extends Controller
 
     public function create() {     // routeModelbinding , inject Post class
 
+
+        // authorize - if we authorize this save then we can proceed
+        $this->authorize('create', Post::class); 
+
         return view('admin.posts.create');
     }
 
     public function store() {
+
+        // authorize - if we authorize this save then we can proceed
+        $this->authorize('create', Post::class); 
 
         $inputs = request()->validate([
             'title' => 'required | min:3 | max:255',
@@ -63,6 +70,9 @@ class PostController extends Controller
     public function destroy (Post $post, Request $request) {
         
         // if(auth()->user()->id !== $post->user_id)..  // alternative
+
+        // authorize - if we authorize this destroy then we can proceed
+        $this->authorize('delete', $post); 
 
         $post->delete();
 
