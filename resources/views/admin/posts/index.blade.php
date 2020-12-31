@@ -53,7 +53,6 @@
                                     </td>
                                     <td>{{$post->created_at->diffForHumans()}}</td>
                                     <td>{{$post->updated_at->diffForHumans()}}</td>
-                                    <td>{{$post->delete}}</td>
                                     <td>
                                         <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
                                             @csrf
