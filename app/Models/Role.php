@@ -9,6 +9,10 @@ class Role extends Model
 {
     use HasFactory;
 
+    //MASS-Assignment
+    protected $guarded = [];
+
+
     //ROLE IS GOING TO BELONG TO MANY DIFF PERMISSIONS BECAUSE WE HAVE A PIVOT-TABLE
     public function permissions() {
         return $this->belongsToMany(Permission::class);
