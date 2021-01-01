@@ -57,4 +57,18 @@ class User extends Authenticatable
     }
 
 
+    // 1st step to let admin only see dashboard
+    public function userHasRole($role_name) {
+
+        foreach($this->roles as $role) {
+            
+            if($role_name == $role->name) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }
