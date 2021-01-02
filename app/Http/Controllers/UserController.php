@@ -12,4 +12,24 @@ class UserController extends Controller
         return view('admin.users.profile', ['user' => $user]);
     }
 
+    public function update(User $user) {
+
+        $inputs = request()->validate([
+            'username' => ['required', 'string', 'max:255', ' alpha_dash'],
+            'name' => ['required', 'string', 'max:255'],
+            'email'=> ['required', 'email', 'max:255'],
+            'avatar' => ['file'],   // specific: 'avatar => ['file:jpeg,png']
+        
+        ]);
+
+        if(request('avatar')) {
+            $inputs['avatar'] = request('avatar')->store('images');     // if requested avatar exists and store it in images, put it in the $input-array-validation.
+        }
+
+        $user->update($inputs);
+
+        return back();
+
+    }
+
 }

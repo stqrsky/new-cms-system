@@ -17,7 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'username',
         'name',
+        'avatar',
         'email',
         'password',
     ];
@@ -40,6 +42,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // MUTATOR PASSWORD - everytime we update a password with Models, we encrypt it
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = bcrypt($value);
+    }
+    //ACCESSOR 4 image
+    public function getAvatarAttribute($value) {
+        return asset($value);
+    }
+
 
     // create relationship: that the user has many different posts
     public function posts() {
