@@ -44,6 +44,12 @@ class UserController extends Controller
     }
 
 
+    public function attach(Role $role) {
+        dd($role);
+    }
+
+
+
     public function destroy(User $user) {
         $user->delete();
 
