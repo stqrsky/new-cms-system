@@ -146,13 +146,31 @@
                                     <td>{{$role->name}}</td>
                                     <td>{{$role->slug}}</td>
                                     <td>
-                                            <form method="post" action="{{route('user.role.attach', $role->id)}}">
+                                            <form method="post" action="{{route('user.role.attach', $user)}}">
                                                 @csrf
                                                 @method('PUT')
-                                                <button class="btn btn-primary">Attach</button>
+                                                <input type="hidden" name="role" value="{{$role->id}}">
+                                                <button class="btn btn-primary"
+                                                        @if($user->roles->contains($role))
+                                                        disabled
+                                                        @endif
+                                                >Attach
+                                                </button>
                                             </form>                                        
                                     </td>
-                                    <td><button class="btn btn-danger">Detach</button></td>
+                                    <td>
+                                            <form method="post" action="{{route('user.role.detach', $user)}}">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="role" value="{{$role->id}}">
+                                                <button class="btn btn-danger"
+                                                        @if(!$user->roles->contains($role))
+                                                        disabled
+                                                        @endif
+                                                >Detach
+                                                </button>
+                                            </form>  
+                                    </td>
                                 </tr>
                             @endforeach
                           </tbody>

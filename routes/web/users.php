@@ -12,7 +12,8 @@ Route::delete('admin/users/{user}/destroy',[App\Http\Controllers\UserController:
 // only users with admin role can see the all users table
 Route::middleware(['role:Admin', 'auth'])->group(function() {
     Route::get('admin/users',[App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-    Route::put('admin/users/{role}/attach', [App\Http\Controllers\UserController::class, 'attach'])->name('user.role.attach');
+    Route::put('admin/users/{user}/attach', [App\Http\Controllers\UserController::class, 'attach'])->name('user.role.attach');
+    Route::put('admin/users/{user}/detach', [App\Http\Controllers\UserController::class, 'detach'])->name('user.role.detach');
 });
 
 
