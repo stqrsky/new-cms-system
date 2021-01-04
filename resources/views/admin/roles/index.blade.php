@@ -8,7 +8,7 @@
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control">
                     </div>
-                    <button class="btn btn-primary"  type="submit">Create</button>
+                    <button class="btn btn-primary btn-block"  type="submit">Create</button>
                 </form>
             </div>
 
