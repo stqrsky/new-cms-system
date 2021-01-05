@@ -6,7 +6,16 @@
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control">
+                        <input type="text" 
+                                name="name" 
+                                id="name" 
+                                class="form-control @error('name') is-invalid @enderror">
+
+                        <div>
+                            @error('name')
+                                <span><strong>{{$message}}</strong></span>
+                            @enderror
+                        </div>
                     </div>
                     <button class="btn btn-primary btn-block"  type="submit">Create</button>
                 </form>
@@ -23,29 +32,25 @@
                               <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Owner</th>
-                                    <th>Title</th>
-                                    <th>Image</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th>Delete</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
                                 </tr>
                               </thead>
                               <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Owner</th>
-                                    <th>Title</th>
-                                    <th>Image</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th>Delete</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
                                 </tr>
                               </tfoot>
                               <tbody>
-                                <tr>
-
-                                </tr>
+                                    @foreach($roles as $role)
+                                    <tr>
+                                        <td>{{$role->id}}</td>
+                                        <td>{{$role->name}}</td>
+                                        <td>{{$role->slug}}</td>
+                                    </tr>
+                                    @endforeach
                               </tbody>
                             </table>
                           </div>
