@@ -1,5 +1,12 @@
 <x-admin-master>
     @section('content')
+
+        @if(Session::has('role-updated'))
+        <div class="alert alert-success">
+            {{session('role-updated')}}
+        </div>
+        @endif
+
         <div class="col-sm-6">
             <h1>Edit Role: {{$role->name}}</h1>
 
@@ -15,6 +22,7 @@
                 <button class="btn btn-primary">Update</button>
             </form>
         </div>
+
     @endsection
 
 </x-admin-master>

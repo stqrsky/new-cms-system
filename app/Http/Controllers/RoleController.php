@@ -32,7 +32,17 @@ class RoleController extends Controller
     }
 
     public function update(Role $role) {
-        dd($role);
+        $role->name = Str::ucfirst(request('name'));      // modify the name coming from request, to-> $role->name
+        $role->slug = Str::of(Str::lower(request('name')))->slug('-');   // seperate every word with " - " / Str::of = this is where we're working on..
+
+        if($role->isDirty('name')) {                       // boolean value // or isClean
+            session()->flash('role-updated', 'Role Updated: '.request('name'));   //concatenate with new created name
+            $role->save();
+        } else {
+            session()->flash('role-updated', 'Nothing has been updated');
+        }
+
+        return back();
     }
 
     public function destroy(Role $role) {
