@@ -31,6 +31,10 @@ class RoleController extends Controller
         return view('admin.roles.edit', ['role'=>$role]);
     }
 
+    public function update(Role $role) {
+        dd($role);
+    }
+
     public function destroy(Role $role) {
         $role->delete();
 
