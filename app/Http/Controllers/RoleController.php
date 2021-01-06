@@ -15,6 +15,7 @@ class RoleController extends Controller
             'roles' => Role::all()
         ]);
     }
+    
     public function store() {
 
         request()->validate([
