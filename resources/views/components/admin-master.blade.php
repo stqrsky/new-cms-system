@@ -56,14 +56,16 @@
         Interface
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
+          <!-- Nav Item - Pages Collapse Menu -->
+          <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
 
       @if(auth()->user()->userHasRole('admin'))
           <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>
+
+          <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>
+
       @endif
 
-      <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>
 
 
       <!-- Nav Item - Utilities Collapse Menu -->
